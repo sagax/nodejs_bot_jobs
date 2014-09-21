@@ -29,15 +29,16 @@ module.exports = {
               var $ = cheerio.load(body);
               check = $('title').text();
               if (check !== '404 Not Found') {
-                bot.say(channel, search + ": http://media.obutts.ru/butts/" + num + ".jpg");
                 if (lap === 1) {
-                  console.log("сразу все нашли");
+                  bot.say(channel, search + ": http://media.obutts.ru/butts/" + num + ".jpg");
                 } else {
-                  console.log("пришлось потрудиться");
+                  bot.say(channel, search + ": http://media.obutts.ru/butts/" + num + ".jpg" + " пришлось потрудиться");
                 }
-              } else {
-                lap=lap+1;
+              } else if (lap < 3) {
+                lap = lap + 1;
                 gen_butts_link();
+              } else {
+                bot.say(channel, search + "сожалеем, мы сделали все возможное");
               }
             });
           };

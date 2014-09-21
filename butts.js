@@ -16,7 +16,7 @@ module.exports = {
         setTimeout(function () {
           request('http://obutts.ru', function (error, response, body) {
             var $ = cheerio.load(body);
-            max = $('div#main').children().first().attr('id').split('s')[1];
+            max = parseInt($('div#main').children().first().attr('id').split('s')[1]);
           });
           var gen_butts_link = function () {
             num = ((Math.random() * 10000) % max | 0).toString();
@@ -31,7 +31,7 @@ module.exports = {
               if (check !== '404 Not Found') {
                 bot.say(channel, search + ": http://media.obutts.ru/butts/" + num + ".jpg");
                 if (lap === 1) {
-                  console.log("сруза все нашли");
+                  console.log("сразу все нашли");
                 } else {
                   console.log("пришлось потрудиться");
                 }
